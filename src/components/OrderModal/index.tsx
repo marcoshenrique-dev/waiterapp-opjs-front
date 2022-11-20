@@ -8,9 +8,12 @@ type OrderModalProps = {
   visible: boolean;
   order: Order;
   onClose: () => void;
+  onCancelOrder: () => Promise<void>;
+  onChangeOrderStatus: () => void;
+  isLoading: boolean;
 }
 
-export function OrderModal({visible, order, onClose}: OrderModalProps) {
+export function OrderModal({visible, order, onClose, onCancelOrder, isLoading, onChangeOrderStatus}: OrderModalProps) {
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -86,12 +89,24 @@ export function OrderModal({visible, order, onClose}: OrderModalProps) {
         </OrderDetails>
 
         <Actions>
-          <button type='button' className='primary'>
-            <span>👩‍🍳</span>
-            <strong>Iniciar produção</strong>
-          </button>
+          {
+            order.status !== 'DONE' && (
 
-          <button type='button' className='secondary'>
+              <button disabled={isLoading} type='button' className='primary' onClick={onChangeOrderStatus}>
+                <span>
+                  {order.status === 'WAITING' && '👩‍🍳'}
+                  {order.status === 'IN_PRODUCTION' && '✅'}
+                </span>
+                <strong>
+                  {order.status === 'WAITING' && 'Iniciar Produção'}
+                  {order.status === 'IN_PRODUCTION' && 'Concluir Pedido'}
+                </strong>
+              </button>
+
+            )
+          }
+
+          <button disabled={isLoading} onClick={onCancelOrder} type='button' className='secondary'>
             <strong>Cancelar pedido</strong>
           </button>
         </Actions>
