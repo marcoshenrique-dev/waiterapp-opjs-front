@@ -7,13 +7,15 @@ Essa aplicação tem como finalidade auxiliar restaurantes a controlar seus pedi
 
 Na parte web é possível visualizar todos os pedidos em real time, graças ao socket.io, visualizar cada pedido e seus produtos/total e atualizar o status de acordo com cada processo.
 
-Tecnologias usadas
+### Tecnologias usadas
 * reactjs
 * styled-components
 * vite
 * sockeio
 * react-toastify
 * axios
+
+### Projeto funcionando
 
 ![opjs-gravado-funcionando](https://user-images.githubusercontent.com/51785898/203781640-3d5b5bd8-95aa-4c70-953e-2f6872ea1a15.gif)
 
